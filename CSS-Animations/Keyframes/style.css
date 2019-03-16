@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+
+/* of course this exercise is for illustrative purposes  */
+/* STEP 1: Define the keyframe */
+@-webkit-keyframes rainbowText {
+	0% {
+		color: red;
+		font-size: 20px;
+	}
+	25% {
+		color: orange;
+	}
+	50% {
+		color: yellow;
+		font-size: 40px;
+		-webkit-transform: translateX(200px);
+		        transform: translateX(200px);
+	}
+	75% {
+		color: green;
+	}
+	100% {
+		color: blue;
+		font-size: 20px;
+	}
+}
+
+@keyframes rainbowText {
+	0% {
+		color: red;
+		font-size: 20px;
+	}
+	25% {
+		color: orange;
+	}
+	50% {
+		color: yellow;
+		font-size: 40px;
+		-webkit-transform: translateX(200px);
+		        transform: translateX(200px);
+	}
+	75% {
+		color: green;
+	}
+	100% {
+		color: blue;
+		font-size: 20px;
+	}
+}
+
+/* STEP 2: Apply the keyframe */
+p {
+	-webkit-animation-name: rainbowText;
+	        animation-name: rainbowText;
+	-webkit-animation-duration: 3s;
+	        animation-duration: 3s;
+	-webkit-animation-timing-function: ease-in;
+	        animation-timing-function: ease-in;
+	-webkit-animation-delay: 0s;
+	        animation-delay: 0s;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+}
