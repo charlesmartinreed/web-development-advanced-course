@@ -1,45 +1,94 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
 
-body {
-	background-color: #fcd04b;
-	font-family: 'Lato', sans-serif;
-	color: white;
-}
+/* transition properties
 
+transition-duration (0.5s, 3s)
+transition-property (scale? all? background-color?)
+transition-timing-function (ease-out, linear, etc.)
+transition-delay (how long do we wait until the transition occurs)
+
+*/
 h1 {
 	text-align: center;
-	font-weight: 300;
+	font-family: Raleway;
+	color: #34495e;
 }
 
-.btn {
-	/* remove the base styles */
-	outline: none;
-	border: none;
-	cursor: pointer;
-	display: block;
+.container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+}
+
+div.item {
 	position: relative;
-	background-color: #fcad26;
-	font-size: 16px;
-	font-weight: 300px;
-	color: white;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	padding: 25px 80px;
-	margin: 0 auto;
-
-	/* box-shadow, border radius */
-	border-radius: 20px;
-	/* x-offset, y-offset, shadow color */
-	box-shadow: 0 6px #efa424;
+	float: left;
+	overflow: hidden;
+	margin: 10px 1%;
+	min-width: 220px;
+	max-width: 310px;
+	width: 100%;
+	background: #000000;
+	text-align: center;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.15);
+	        box-shadow: 0 0 5px rgba(0,0,0,0.15);
 }
 
-.btn:hover {
-	box-shadow: 0 4px #efa424;
-	/* we shift the button down from the top by the same amount we shrink the box-shadow*/
-	top: 2px;
+div.item * {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
-.btn:active {
-	box-shadow: none;
-	top: 6px;
+div.item img {
+	max-width: 100%;
+	vertical-align: top;
+	height: 210px;
+}
+
+div.item i {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	font-size: 34px;
+	color: #000000;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	background: #ffffff;
+}
+
+div.item a {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+div.item.blue {
+	background-color: #34495e;
+}
+
+div.item.blue i {
+	color: #34495e;
+}
+
+div.item.red {
+	background-color: #e74c3c;
+}
+
+div.item.red i {
+	color: #e74c3c;
+}
+
+div.item.green {
+	background-color: #16a085;
+}
+
+div.item.green i {
+	color: #16a085;
 }
