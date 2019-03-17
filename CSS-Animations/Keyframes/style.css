@@ -1,104 +1,80 @@
-/* animation-name, duration, timing-function and delay */
+html {
+	background: #ecf0f1;
+}
 
-/*
-animation-iteration-count can be set to infinite in order to perpetually loop an animation
-
-animation-direction options are forward, alterate and reverse.
-
-animation-fill-mode specifies how any animation should apply styles BEFORE (during the animation delay, if specified) and AFTER the animation finishes
-
-options are: forwards (100% state lingers at end of animation), backwards (0% value of animation is applied immediately BEFORE the delay), both
-
-animation-play-state specifies whether the animation is currently running
-
-options are paused or running.
-stopping an animation all together requires removing the animation altogether and adding it anew.
-*/
-
-body {
+body, h1, h2 {
+	font-family: Helvetica, sans-serif;
+	color: #2c3e50;
 	margin: 0;
-	/* shorthand order is important; first time duration has to be animation duration, second must be animation delay */
-	background-color: #2c3e50;
-	animation: sky 10s linear infinite 0s;
-	/* animation-timing-function: linear; */
-	/* animation-duration: 10s; */
-	/* animation-delay: 0; */
-	/* animation-iteration-count: infinite; */
-	/* animation-direction: reverse; */
+	padding: 0;
+	font-weight: 300;
 }
 
-.grass {
-	background: green;
-	height: 600px;
-	width: 100%;
-	position: absolute;
+h1 {
+	font-size: 80px;
 }
 
-.sun {
-	background: #f1c40f;
-	width: 200px;
-	height: 200px;
+h2 {
+	/* animation: hiddenText 4s linear infinite; */
+	font-size: 36px;
+	margin-top: 20px;
+	opacity: 0;
+	/* 1s to appear, 3s delay, fill-direction of forwards to keep the 100% state in the DOM */
+	animation: hiddenText 1s 3s forwards;
+}
+
+.container {
+	margin: 4em;
+	text-align: center;
+}
+
+.loader {
+	animation: coloredspin 4s linear infinite;
+	width: 120px;
+	height: 120px;
+	margin: auto;
+	border: 16px solid #bdc3c7;
+	border-top-color: #1abc9c;
+	border-bottom-color: #3498db;
 	border-radius: 50%;
 }
 
-@keyframes sun {
+@keyframes spin {
 	0% {
-		transform: translate(-200px, 200px);
-		background-color: orange;
+		transform: rotate(0deg);
 	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
 
+@keyframes coloredspin {
+	0% {
+		transform: rotate(0deg) scale(1);
+	}
 	25% {
-		transform: translate(100px, 0px);
-		background-color: yellow;
+		border-top-color: #2ecc71;
+		border-bottom-color: #2ecc71;
 	}
-
 	50% {
-		transform: translate(400px, -100px);
-		background-color: yellow;
+		transform: rotate(360deg) scale(1.05);
+		border-top-color: #3498db;
+		border-bottom-color: #3498db;
 	}
-
 	75% {
-		transform: translate(700px, -50px);
-		background-color: yellow;
+		border-top-color: #9b59b6;
+		border-bottom-color: #9b59b6;
 	}
-
-	90% {
-		transform: translate(1000px, 0px);
-		background-color: red;
-	}
-
 	100% {
-		transform: translate(1300px, 200px);
-		background-color: red;
+		transform: rotate(720deg) scale(1);
 	}
 }
 
-@keyframes sky {
+@keyframes hiddenText {
 	0% {
-		background-color: black;
-	}
-	10% {
-		background-color: black;
-	}
-	30% {
-		background-color: pink;
-	}
-	70% {
-		background-color: orange
-	}
-	90% {
-		background-color: yellow;
+		opacity: 0;
 	}
 	100% {
-		background-color: black;
+		opacity: 1;
 	}
-}
-
-.sun {
-	animation: sun 10s linear infinite 0s;
-	/* animation-name: sun;
-	animation-timing-function: linear;
-	animation-duration: 10s;
-	animation-delay: 0;
-	animation-iteration-count: infinite; */
 }
