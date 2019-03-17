@@ -1,63 +1,101 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+/* animation-name, duration, timing-function and delay */
 
-/* of course this exercise is for illustrative purposes  */
-/* STEP 1: Define the keyframe */
-@-webkit-keyframes rainbowText {
+/*
+animation-iteration-count can be set to infinite in order to perpetually loop an animation
+
+animation-direction options are forward, alterate and reverse.
+
+animation-fill-mode specifies how any animation should apply styles BEFORE (during the animation delay, if specified) and AFTER the animation finishes
+
+options are: forwards (100% state lingers at end of animation), backwards (0% value of animation is applied immediately BEFORE the delay), both
+
+animation-play-state specifies whether the animation is currently running
+
+options are paused or running.
+stopping an animation all together requires removing the animation altogether and adding it anew.
+*/
+
+body {
+	margin: 0;
+	background-color: #2c3e50;
+	animation-name: sky;
+	animation-timing-function: linear;
+	animation-duration: 10s;
+	animation-delay: 0;
+	animation-iteration-count: infinite;
+}
+
+.grass {
+	background: green;
+	height: 600px;
+	width: 100%;
+	position: absolute;
+}
+
+.sun {
+	background: #f1c40f;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+}
+
+@keyframes sun {
 	0% {
-		color: red;
-		font-size: 20px;
+		transform: translate(-200px, 200px);
+		background-color: orange;
 	}
+
 	25% {
-		color: orange;
+		transform: translate(100px, 0px);
+		background-color: yellow;
 	}
+
 	50% {
-		color: yellow;
-		font-size: 40px;
-		-webkit-transform: translateX(200px);
-		        transform: translateX(200px);
+		transform: translate(400px, -100px);
+		background-color: yellow;
 	}
+
 	75% {
-		color: green;
+		transform: translate(700px, -50px);
+		background-color: yellow;
 	}
+
+	90% {
+		transform: translate(1000px, 0px);
+		background-color: red;
+	}
+
 	100% {
-		color: blue;
-		font-size: 20px;
+		transform: translate(1300px, 200px);
+		background-color: red;
 	}
 }
 
-@keyframes rainbowText {
+@keyframes sky {
 	0% {
-		color: red;
-		font-size: 20px;
+		background-color: black;
 	}
-	25% {
-		color: orange;
+	10% {
+		background-color: pink;
 	}
-	50% {
-		color: yellow;
-		font-size: 40px;
-		-webkit-transform: translateX(200px);
-		        transform: translateX(200px);
+	30% {
+		background-color: blue;
 	}
-	75% {
-		color: green;
+	70% {
+		background-color: blue
+	}
+	90% {
+		background-color: pink;
 	}
 	100% {
-		color: blue;
-		font-size: 20px;
+		background-color: black;
 	}
 }
 
-/* STEP 2: Apply the keyframe */
-p {
-	-webkit-animation-name: rainbowText;
-	        animation-name: rainbowText;
-	-webkit-animation-duration: 3s;
-	        animation-duration: 3s;
-	-webkit-animation-timing-function: ease-in;
-	        animation-timing-function: ease-in;
-	-webkit-animation-delay: 0s;
-	        animation-delay: 0s;
-	-webkit-animation-iteration-count: infinite;
-	        animation-iteration-count: infinite;
+.sun {
+	animation-name: sun;
+	animation-timing-function: linear;
+	animation-duration: 10s;
+	animation-delay: 0;
+	animation-iteration-count: infinite;
 }
