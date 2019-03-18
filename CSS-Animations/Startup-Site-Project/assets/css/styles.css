@@ -1,0 +1,56 @@
+/* GENERAL STYLING */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font: normal 16px sans-serif;
+	color: #555;
+}
+
+nav {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	opacity: 0.75;
+}
+
+a:hover {
+	opacity: 1;
+}
+
+/* HEADER STYLING */
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 100px 0;
+	opacity: 0;
+	animation: 1s fadein 0.5s forwards;
+}
+
+header h2 {
+	font-family: 'Quicksand', sans-serif;
+}
+
+header nav {
+	display: flex;
+	margin-right: -15px;
+}
+
+header nav li {
+	margin: 0 15px;
+}
+
+/* CSS ANIMATIONS */
+@keyframes fadein {
+	/* opacity set to begin at 0 in the header section above */
+	100% {
+		opacity: 1;
+	}
+}
