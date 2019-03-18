@@ -11,6 +11,7 @@ html {
 	color: #555;
 }
 
+ul,
 nav {
 	list-style: none;
 }
@@ -30,12 +31,42 @@ a.btn {
 	opacity: 1;
 }
 
+.grid {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+hr {
+	width: 250px;
+	height: 3px;
+	background-color: #3f51b5;
+	border: 0;
+	margin-bottom: 50px;
+}
+
 /* sections should also be flex containers */
 section {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 100px 80px;
+}
+
+section h3.title {
+	text-transform: capitalize;
+	font: bold 32 "Open Sans", sans-serif;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+section p {
+	max-width: 775px;
+	line-height: 2;
+	padding: 0 20px;
+	margin-bottom: 30px;
+	text-align: center;
 }
 
 a:hover {
@@ -109,6 +140,24 @@ header nav li {
 	opacity: 0;
 	margin-top: 100px;
 	animation: 1s slidefade 1s forwards;
+}
+
+/* SCROLL SECTION STYLING */
+.destinations .grid li {
+	height: 350px;
+	padding: 20px;
+	/* clip image to the content area, so the padding is reserved for white space */
+	background-clip: content-box;
+	background-size: cover;
+	background-position: center;
+}
+
+.destinations .grid li.small {
+	flex-basis: 30%;
+}
+
+.destinations .grid li.large {
+	flex-basis: 70%;
 }
 
 /* CSS ANIMATIONS */
