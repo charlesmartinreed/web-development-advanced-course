@@ -47,6 +47,11 @@ hr {
 }
 
 /* sections should also be flex containers */
+/* excluding the hero section, ever other section should swap between light and dark background */
+section:not(.hero):nth-child(even) {
+	background-color: #f5f5f5;
+}
+
 section {
 	display: flex;
 	flex-direction: column;
@@ -142,7 +147,9 @@ header nav li {
 	animation: 1s slidefade 1s forwards;
 }
 
-/* SCROLL SECTION STYLING */
+
+
+/* DESTINATIONS SECTION STYLING */
 .destinations .grid li {
 	height: 350px;
 	padding: 20px;
@@ -158,6 +165,22 @@ header nav li {
 
 .destinations .grid li.large {
 	flex-basis: 70%;
+}
+
+/* PACAKGES SECTION STYLING */
+.packages .grid li {
+	padding: 50px;
+	flex-basis: 50%;
+	text-align: center;
+}
+
+.packages .grid li i {
+	color: #8c9eff;
+}
+
+.packages .grid li h4 {
+	font-size: 30px;
+	margin: 25px 0;
 }
 
 /* CSS ANIMATIONS */
