@@ -1,5 +1,6 @@
 const button = document.querySelector('#btn');
 const image = document.querySelector('#photo');
+
 const URL = 'https://dog.ceo/api/breeds/image/random'
 button.addEventListener('click', handleClick);
 
