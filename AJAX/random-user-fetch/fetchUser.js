@@ -1,3 +1,4 @@
+// QUERY SELECTORS
 const button = document.querySelector('#btn');
 const avatar = document.querySelector('#avatar');
 const divfullname = document.querySelector('#fullname');
@@ -5,12 +6,10 @@ const divusername = document.querySelector('#username');
 const spanemail = document.querySelector('#email');
 const spancity = document.querySelector('#city');
 
-let URL = 'https://randomuser.me/apid/'
-// let fullname = '';
-// let username = '';
-// let userEmail = '';
-// let userCity = '';
-// let userThumbnailURL = '';
+// GLOBAL VARIABLES
+let URL = 'https://randomuser.me/api/'
+
+// EVENT LOADERS
 
 window.addEventListener('DOMContentLoaded', fetchUserData);
 button.addEventListener('click', fetchUserData);
@@ -19,15 +18,18 @@ button.addEventListener('click', fetchUserData);
 function fetchUserData() {
 	fetch(URL)
 	.then(handleErrors)
-	.then(function(response) {
-		return response.json()
-	})
-	.then(function(data) {
-		parseAndDisplayData(data)
-	})
-	.catch(function(error) {
-		console.log(error);
-	})
+	.then(parseJSON)
+	.then(updateProfile)
+	.catch(displayErrors)
+	// .then(function(response) {
+	// 	return response.json()
+	// })
+	// .then(function(data) {
+	// 	parseAndDisplayData(data)
+	// })
+	// .catch(function(error) {
+	// 	console.log(error);
+	// });
 }
 
 function handleErrors(request) {
@@ -38,25 +40,22 @@ function handleErrors(request) {
 	}
 }
 
-
-
-function printError(request) {
-	console.log(error);
+function parseJSON(response) {
+	return response.json().then(function(parsedData) {
+		return parsedData.results[0];
+	})
 }
 
-function parseAndDisplayData(data) {
-	let userResults = data.results[0];
+function updateProfile(parsedData) {
+	var fullName = `${parsedData.name.first} ${parsedData.name.last}`;
 
-	let fullName = `${userResults.name.first} ${userResults.name.last}`;
-	let username = `${userResults.login.username}`;
-	let userEmail = `${userResults.email}`;
-	let userCity = `${userResults.location.city}`;
-	let userThumbnailURL = `${userResults.picture.thumbnail}`;
-
-	avatar.setAttribute('src', userThumbnailURL);
+	avatar.setAttribute('src', parsedData.picture.thumbnail);
 	divfullname.innerText = fullName;
-	divusername.innerText = username;
-	spanemail.innerText = userEmail;
-	spancity.innerText = userCity;
+	divusername.innerText = parsedData.login.username;
+	spanemail.innerText = parsedData.email;
+	spancity.innerText = parsedData.location.city;
+}
 
+function displayErrors(err) {
+	console.log(err);
 }
