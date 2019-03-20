@@ -10,3 +10,7 @@ A mock is a fake object that poses as a function without the overhead of retriev
 # creating spies in jasmine
 - spyOn - only used when method exists on an object. Be sure to use this with existing functions.
 - jasmine.createSpy - returns a brand new function
+
+# spyOn methods
+.calls.count
+.and.callThrough (triggers our function contained within our spy/mock)

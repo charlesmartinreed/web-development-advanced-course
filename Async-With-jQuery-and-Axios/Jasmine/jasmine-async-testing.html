@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jasmine Tests</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/jasmine.css">
+</head>
+<body>
+	<!-- UI provided by Jasmine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/jasmine.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/jasmine-html.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.2/boot.js"></script>
+
+
+	<script>
+		<!-- clocks with setTimeout -->
+		describe("a simple setTimeout", function(){
+			var sample;
+
+			beforeEach(function() {
+				sample = jasmine.createSpy("sampleFunction");
+				jasmine.clock().install();
+			});
+
+			afterEach(function() {
+				jasmine.clock().uninstall();
+			});
+
+			if("is only invoked after 1000 milliseconds", function(){
+				setTimeout(function(){
+					sample();
+				}, 1000);
+				<!-- tick will move our clock ahead by certain amount of time -->
+				jasmine.clock().tick(999);
+				expect(sample).not.toHaveBeenCalled();
+
+				<!-- using tick this way allows us to test async code -->
+				jasmine.clock().tick(1);
+				expect(sample).toHaveBeenCalled();
+			});
+		});
+
+		<!-- async test with the .done callback -->
+		function getUserInfo(username) {
+			return $.getJSON('https://api.github.com/users/' + username);
+		}
+
+		describe("#getUserInfo", function(){
+			it("returns the correct name for the user", function(done) {
+				getUserInfo('elie').then(function(data){
+					expect(data.name).toBe('Elie Schoppik');
+					<!-- this call to done is what allows us to test our async code -->
+					done();
+				});
+			});
+		});
+
+	</script>
+</body>
+</html>
