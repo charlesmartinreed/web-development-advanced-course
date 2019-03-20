@@ -23,6 +23,9 @@ fetchBtn.addEventListener('click', function() {
 	fetch('https://ron-swanson-quotes.herokuapp.com/v2/quotes')
 	.then(parseFetch)
 	.then(displayFetchQuote)
+	.catch(function(error){
+		console.log(error);
+	})
 })
 
 xhrBtn.addEventListener('click', function() {
@@ -31,6 +34,8 @@ xhrBtn.addEventListener('click', function() {
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status === 200) {
 			parseXHRrequest(request.responseText);
+		} else {
+			console.log("Error time!");
 		}
 	}
 
