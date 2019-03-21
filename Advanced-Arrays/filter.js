@@ -79,13 +79,13 @@ function find(arr, searchValue) {
 
 // const findResult = find([1,2,3,4,5], 3);
 const findResult = find([1,2,3,4,5], 10);
-console.log(findResult);
+// console.log(findResult);
 
 // Write a function called findInObj which accepts an array of objects, a key, and some value to search for and returns the first found value in the arrayt.
 function findInObj(arr, key, value) {
 	return arr.filter(function(obj) {
 		return obj[key] === value;
-	})[0]
+	})[0];
 }
 
 const findObject = findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true);
