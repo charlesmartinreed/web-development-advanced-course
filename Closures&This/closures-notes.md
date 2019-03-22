@@ -119,3 +119,8 @@ function classRoom() {
 		}
 	}
 }
+
+// RECAP
+- Not all programming languages have closures
+- closures exist only when an inner function makes use of an outer variable from an outer function that has previously returned
+- closures are used in JS to create private variables and code that isolates our logic and application 
