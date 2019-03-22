@@ -31,8 +31,8 @@ function hasEvenNumber(arr) {
 
 const evenresult = hasEvenNumber([1, 2, 3, 4]);
 const evenresult2 = hasEvenNumber([1, 3, 5]);
-console.log(evenresult);
-console.log(evenresult2);
+// console.log(evenresult);
+// console.log(evenresult2);
 
 function hasComma(str){
 	return str.split("").some(function(value){
@@ -42,5 +42,5 @@ function hasComma(str){
 
 const commaresult = hasComma("This is wonderful");
 const commaresult2 = hasComma("This, is wonderful");
-console.log(commaresult);
-console.log(commaresult2);
+// console.log(commaresult);
+// console.log(commaresult2);
