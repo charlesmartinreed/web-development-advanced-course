@@ -107,4 +107,25 @@ function firstFunction() {
 	return "Hello";
 }
 
-- new
+# new
+
+- When the new keyword is used, a new object is created.
+- New is used with a function, and inside of the function, the keyword 'this' will refer to the new object that is created.
+- When new keyword is used, IMPLICIT 'return this' is added to the function which uses it.
+
+function Person(firstName, lastName) {
+	this.firstName = firstName;
+	this.lastName = lastName;
+}
+
+var elie = new Person("Elie", "Schoppik"); // 'this' belongs to elie now
+elie.firstName; //'Elie'
+elie.lastName; //'Schoppik'
+
+# RECAP
+- this is reserved
+- this' value is determined at execution
+-this is set using globa context, object binding, explicit binding or the new keyword
+- when set in the global context in a function, this is either the global object (window, in the browser) or 'undefined' when using strict mode
+- call, bind and apply are used to explicitly set the value of this
+- when new is used, the value of 'this' is set to be an empty object and return from function invoked with the new keyword
