@@ -1,4 +1,5 @@
 var express = require('express'),
+		bodyParser = require('body-parser'),
 		port = process.env.PORT || 3000,
 		app = express();
 
@@ -6,6 +7,8 @@ var express = require('express'),
 // res.json is the method being called in this scenario when we pass an object to res send
 
 var todoRoutes = require('./routes/todos');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
 	// res.send("Hello world! I'm an express app!");
