@@ -20,6 +20,43 @@ elie.isInstructor; //true. Why? Because of __proto__. Since the object has a lin
 
 # How can we implement inheritance in JS using the prototype object?
 
+- Inheritance is the passing of methods and properties from one class to another
+- Since classes aren't built into the JS language, we pass the prototype property of one constructor to another
+- we can't directly assign prototypes to one another because this creates reference issues
+
+ex: Student.prototype = Teacher.prototype //bad! Now, properties added to student are also added to teacher because they are both referencing the same point in memory
+
+- How do we fix this? Object.create
+
+# Object.create
+- creates a new function with the dunder prototype (__proto__) as its first parameter
+
+-ex: function Student(firstName, lastName) {
+	return Person.apply(this, arguments);
+}
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.status = function() {
+	return "I am currently a student!"
+}
+
+var elie = new Person("Elie", Schoppik);
+elie.status; //undefined
+
+# Object.create vs new
+- New will accomplish ALMOST exactly the same as Object.create, but:
+- Adds unnecessary properties on the prototype object because it is creating an object with undefined properties just for the prototype
+- So, when doing prototypal inheritance as in the above example, use Object.create
+
+# Resetting the constructor
+- When we use Object.create to point toward our Person.prototype in prototypal inheritance, we also link our newly created object to the the constructor that belongs to object that we are inheriting from; this is not always ideal
+
+- Set the prototype to be an object created with another prototype
+
+- <Object>.prototype.constructor = <Object> fixes this.
+
+
+
 # RECAP: 'new' keyword
 - Creates object out of thin air, assigns the value of 'this' to be that created object, adds implicit 'return this' to the end of the function. creates a link (__proto__) between created object and the prototype property of the constructor function
 
