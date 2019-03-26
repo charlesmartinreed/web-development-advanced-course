@@ -38,7 +38,18 @@ router.get('/:todoId', (req, res) => {
 		.catch((err) => {
 			res.send(err);
 		})
-})
+});
+
+router.put('/:todoId', (req, res) => {
+	// first param is what to search by, second param is how to update it, third param gives us a response with the updated data
+	db.Todo.findOneAndUpdate({_id: req.params.todoId}, req.body, {new: true})
+		.then((todo) => {
+			res.json(todo);
+		})
+		.catch((err) => {
+			res.send(err);
+		})
+});
 
 
 
