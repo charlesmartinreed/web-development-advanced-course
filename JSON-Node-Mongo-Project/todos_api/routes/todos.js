@@ -51,6 +51,17 @@ router.put('/:todoId', (req, res) => {
 		})
 });
 
+router.delete('/:todoId', (req, res) => {
+	//takes an object to remove by, key and value
+	db.Todo.deleteOne({_id: req.params.todoId})
+	.then(() => {
+		res.json({message: 'We deleted it!'})
+	})
+	.catch((err) => {
+		res.send(err);
+	})
+})
+
 
 
 // we have to actually export our router since that's what's handling our routing
