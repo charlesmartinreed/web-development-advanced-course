@@ -32,3 +32,10 @@ var firstHouse = new House(2, 2, 1000);
 
 
 # How can we use call and apply to refactor constructor functions?
+- see constructor-practice.js for additional details
+
+# RECAP
+- OOP is a model based on objects constructed from a blueprint. This helps us make modular, shareable code.
+- In OOP languages, these blueprints are called "classes" and the objects created from them are called "instances"
+- we mimic classes in JS by creating constructor functions with the 'new' keyword
+- refactor duplication when multiple constructor functions share functionality by using call or apply
