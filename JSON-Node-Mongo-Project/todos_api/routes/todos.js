@@ -19,14 +19,26 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 	db.Todo.create(req.body)
-	.then((newTodo) => {
-		//status '201' sis the HTTP status code means the request has succeeded and a resource has been created. Commonly used as the result of a POST request.
-		res.status(201).json(newTodo);
+		.then((newTodo) => {
+			//status '201' sis the HTTP status code means the request has succeeded and a resource has been created. Commonly used as the result of a POST request.
+			res.status(201).json(newTodo);
 	})
-	.catch(err => {
-		res.send(err);
+		.catch(err => {
+			res.send(err);
 	})
 });
+
+// : defines something as a PATH VARIABLE
+router.get('/:todoId', (req, res) => {
+	// look up the todo
+	db.Todo.findById(req.params.todoId)
+		.then((foundTodo) => {
+			res.json(foundTodo)
+		})
+		.catch((err) => {
+			res.send(err);
+		})
+})
 
 
 
