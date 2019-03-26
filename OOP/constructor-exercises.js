@@ -30,6 +30,7 @@ function Parent(firstName, lastName, favoriteColor, favoriteFood){
 // }
 
 function Child(firstName, lastName, favoriteColor, favoriteFood) {
+	//by using apply instead of call, we can pass in the array like "arguments" culled from the object that creates the child with the 'new' keyword
 	Parent.apply(this, arguments);
 }
 
