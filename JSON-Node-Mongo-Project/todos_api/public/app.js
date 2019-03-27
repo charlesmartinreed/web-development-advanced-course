@@ -14,8 +14,14 @@ $(document).ready(function() {
 	});
 
 	// because the spans are not necssarily on the page at load, we need to use event delegation and target a parent DOM element that IS on the page at load
-	$('.list').on('click', 'span', function(){
+	$('.list').on('click', 'span', function(e){
+		e.stopPropagation(); //prevents triggering of parent li event via event bubbling
 		removeTodo($(this).parent());
+	});
+
+
+	$('.list').on('click', 'li', function(){
+		updateTodo($(this));
 	})
 });
 
@@ -46,6 +52,7 @@ function addTodo(todo) {
 
 	// jQuery holds the data we specify in memory; we can retrieve this later when making our delete request
 	newTodo.data('id', todo._id);
+	newTodo.data('completed', todo.completed)
 
 	if(todo.completed) {
 		newTodo.addClass("done");
@@ -68,7 +75,27 @@ function removeTodo(todo) {
 		//then, we can remove the span's parent element, the li, from the DOM
 		todo.remove();
 	})
-	.catch(function(err)) {
+	.catch(function(err) {
 		console.log(err);
-	}
+	})
+}
+
+function updateTodo(todo) {
+	var updateURL = '/api/todos/' + todo.data('id');
+
+		// by using the completed attribute for an item pulled from the database, by jQuery, we keep the values in sync
+	var isCompleted = !todo.data('completed');
+	var updateData = {completed: isCompleted}
+
+	// send request to change status on server
+	$.ajax({
+		method: 'PUT',
+		url: updateURL,
+		data: updateData
+	})
+		.then((updatedTodo) => {
+				// toggle the completed/not completed styling
+			todo.toggleClass("done");
+			todo.data("completed", isCompleted)
+		})
 }
