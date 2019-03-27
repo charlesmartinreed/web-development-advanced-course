@@ -5,13 +5,18 @@ $(document).ready(function() {
 		.then(addTodos)
 
 
-	// event listener
+	// event listeners
 	$('#todoInput').keypress(function(event) {
 		// which and keyCode handle the same property, but which is compatible with older browsers that don't support keyCode
 		if(event.which === 13) {
 			createTodo()
 		}
 	});
+
+	// because the spans are not necssarily on the page at load, we need to use event delegation and target a parent DOM element that IS on the page at load
+	$('.list').on('click', 'span', function(){
+		removeTodo($(this).parent());
+	})
 });
 
 function createTodo() {
@@ -37,7 +42,10 @@ function addTodos(todos) {
 
 function addTodo(todo) {
 	// make a new li with the todo
-	var newTodo = $('<li class="task">'+todo.name + '</li>');
+	var newTodo = $('<li class="task">'+todo.name + '<span>X</span></li>');
+
+	// jQuery holds the data we specify in memory; we can retrieve this later when making our delete request
+	newTodo.data('id', todo._id);
 
 	if(todo.completed) {
 		newTodo.addClass("done");
@@ -45,4 +53,22 @@ function addTodo(todo) {
 
 	// append to the list
 	$('.list').append(newTodo);
+}
+
+function removeTodo(todo) {
+	var clickedId = todo.data('id');
+	var deleteURL = '/api/todos/' + clickedId;
+
+	//first, send a delete request, using the task ID, which is stored via jQuery's data method
+	$.ajax({
+		method: 'DELETE',
+		url: deleteURL
+	})
+	.then(function(data){
+		//then, we can remove the span's parent element, the li, from the DOM
+		todo.remove();
+	})
+	.catch(function(err)) {
+		console.log(err);
+	}
 }
