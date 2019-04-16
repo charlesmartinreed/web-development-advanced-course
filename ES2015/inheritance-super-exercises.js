@@ -27,15 +27,16 @@ class Vehicle {
 }
 
 class Car extends Vehicle {
-  constructor(make, model, year, numWheels) {
-    super(make, model, year);
+  // compared to constructor(make, model, year)
+  constructor() {
+    super(...arguments);
     this.numWheels = 4;
   }
 }
 
 class Motorcycle extends Vehicle {
-  constructor(make, model, year, numWheels) {
-    super(make, model, year);
+  constructor() {
+    super(...arguments);
     this.numWheels = 2;
   }
 }
